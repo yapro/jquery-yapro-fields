@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>calendar</title>
+	<script language="Javascript" type="text/javascript" src="http://yapro.ru/javascript/jquery.js"></script>
+</head>
+<body>
+<style>
+* {
+	padding: 0px;
+	margin: 0px;
+	font: 12px Arial, Helvetica, Tahoma, sans-serif;
+	letter-spacing: 0px;
+	color: #333333;
+}
+TABLE, TD, P, DIV {
+    font: 12px Arial, Helvetica, sans-serif;
+    line-height: 20px;
+}
+B { font-weight: bold }
+</style>
+
+<form action="" id="myForm" method>
+	<table border="0" cellpadding="0" cellspacing="5">
+	    <tr>
+	        <td>
+	            <b>Цифры:</b>
+	        </td>
+	        <td>
+	            <p><input name="user_number" value=""></p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b>Буквы:</b>
+	        </td>
+	        <td>
+	            <p><input name="user_words" value=""></p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b>Что-угодно:</b>
+	        </td>
+	        <td>
+	            <p><textarea name="field_textarea" rows="3" cols="30"></textarea></p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b>телефон:</b>
+	        </td>
+	        <td>
+	            <p><input name="phone" value=""></p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b>email:</b>
+	        </td>
+	        <td>
+	            <p><input name="email" value=""></p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b>radio ab:</b>
+	        </td>
+	        <td>
+	            <p>
+	            	<input type="radio" name="field_radio_ab" value="0"> - a &nbsp; &nbsp; &nbsp;
+	            	<input type="radio" name="field_radio_ab" value="1"> - b
+	            </p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b>radio 012:</b>
+	        </td>
+	        <td>
+	            <p>
+	            	<input type="radio" name="field_radio_012" value="0"> - 0<br>
+	            	<input type="radio" name="field_radio_012" value="1"> - 1<br>
+	            	<input type="radio" name="field_radio_012" value="2"> - 2<br>
+	            </p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <b>select:</b>
+	        </td>
+	        <td>
+	            <p>
+	            	<select name="field_select">
+		            	<option value="0">значение 0</option>
+		            	<option value="1">значение 1</option>
+	            	</select>
+	            </p>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <p> </p>
+	        </td>
+	        <td>
+	            <p><input type="submit" value="Отправить"></p>
+	        </td>
+	    </tr>
+	</table>
+</form>
+<link type="text/css" rel="stylesheet" href="latest.css">
+<script language="Javascript" type="text/javascript" src="latest.js"></script>
+<script>
+$("#myForm").submit(function(){
+	
+	var error = "";
+	
+	error += $(this).yaproField("user_number", "must");
+	error += $(this).yaproField("field_textarea", "m","",true);
+	error += $(this).yaproField("phone", "p", "телефон введен неправильно");
+	error += $(this).yaproField("email", {"m":true,"v":"e"} );
+	error += $(this).yaproField("field_radio_ab", "m", "", true, -80);
+	error += $(this).yaproField("field_select", "m");
+	
+	return false;
+});
+
+fieldNumber("[name=user_number]");
+
+fieldPhone("[name=phone]");
+
+$("[name=user_words]").bind("keyup change", function(){
+	$("#myForm").yaproField(this.name, {"must":true,"valid":"words"} );
+});
+
+$("[name=email]").bind("keyup change", function(){
+	$("#myForm").yaproField(this.name, "e");
+});
+
+$("[name=field_radio_ab]").closest("TD").bind("mouseover mouseout click", function(){
+	$("#myForm").yaproField("field_radio_ab", "m", "", true, -80);
+});
+
+$("[name=field_radio_012]").closest("TD").bind("mouseover mouseout click", function(){
+	$("#myForm").yaproField("field_radio_012", "m", "", true, -130, 20);
+});
+</script>
+</body>
+</html>

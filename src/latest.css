@@ -1,0 +1,33 @@
+.yaproField {
+	position: absolute;
+	top: -12345px;
+	left: -12345px;
+	cursor: pointer;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	z-index: 789;
+}
+.yaproFieldPointer {
+	width: 9px;
+	background: url(red.gif) no-repeat right;
+	display:block;
+	height: 17px;
+}
+.yaproFieldHTML {
+	white-space: nowrap;
+	font: 12px Arial, Helvetica, sans-serif;;
+	line-height: 12px;
+	height: 17px;
+	background: #FF0000 url(close.gif) no-repeat right;
+	color: #FFF;
+	letter-spacing: 0px;
+	border: none;
+	padding: 1px 18px 1px 3px;
+	margin: 0px;
+	vertical-align: middle;
+}
+/* Safari and Chrome */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+body:first-of-type .yaproFieldHTML {height: 15px}
+}
